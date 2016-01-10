@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/golang/glog"
+	"github.com/yanyiwu/settledb/Godeps/_workspace/src/github.com/golang/glog"
 	"github.com/yanyiwu/settledb/engine"
 )
 
