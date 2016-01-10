@@ -4,7 +4,7 @@ import (
 	"flag"
 	"strconv"
 
-	"github.com/golang/glog"
+	"github.com/yanyiwu/settledb/Godeps/_workspace/src/github.com/golang/glog"
 	"github.com/yanyiwu/settledb/server"
 )
 

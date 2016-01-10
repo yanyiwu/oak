@@ -22,6 +22,8 @@ func Serve(addr string) error {
 	}
 	http.HandleFunc("/status", StatusHandler)
 	http.HandleFunc("/keys", KeysHandler)
+	http.HandleFunc("/get", GetHandler)
+	http.HandleFunc("/set", SetHandler)
 	return http.ListenAndServe(addr, nil)
 }
 
@@ -38,4 +40,21 @@ func KeysHandler(w http.ResponseWriter, req *http.Request) {
 	keys := ng.GetKeys()
 	b, _ := json.Marshal(keys)
 	w.Write(b)
+}
+
+func GetHandler(w http.ResponseWriter, req *http.Request) {
+}
+
+func SetHandler(w http.ResponseWriter, req *http.Request) {
+	if req.Method != "POST" {
+		ResponseError(w, "http method should be POST")
+		return
+	}
+	decoder := json.NewDecoder(req.Body)
+	var t SetRequest
+	err := decoder.Decode(&t)
+	if err != nil {
+		ResponseError(w, err.Error())
+		return
+	}
 }
