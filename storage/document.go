@@ -1,5 +1,5 @@
 package storage
 
 type Document struct {
-	Fields []string
+	Fields []string `json:"fields"`
 }

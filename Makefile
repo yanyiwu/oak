@@ -1,5 +1,5 @@
-all:
-	go build -v
+build:
+	go build -v ./...
 test:
 	go test -v ./...
 godep:

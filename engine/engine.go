@@ -1,7 +1,5 @@
 package engine
 
-import "errors"
-
 type Engine struct {
 	kv map[string]interface{}
 }
@@ -30,14 +28,14 @@ func (ng *Engine) Set(key string, value interface{}) error {
 	return nil
 }
 
-func (ng *Engine) SetSchema(key string, value *Schema) error {
-	if _, ok := ng.kv[key]; ok {
-		return errors.New("key " + key + " already exists")
-	}
-	ng.kv[key] = value
-	return nil
-}
-
-func (ng *Engine) GetSchema(key string) *Schema {
-	return ng.kv[key].(*Schema)
-}
+//func (ng *Engine) SetSchema(key string, value *Schema) error {
+//	if _, ok := ng.kv[key]; ok {
+//		return errors.New("key " + key + " already exists")
+//	}
+//	ng.kv[key] = value
+//	return nil
+//}
+//
+//func (ng *Engine) GetSchema(key string) *Schema {
+//	return ng.kv[key].(*Schema)
+//}

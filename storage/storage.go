@@ -1,12 +1,16 @@
 package storage
 
-import "github.com/syndtr/goleveldb/leveldb"
+import (
+	"encoding/json"
+
+	"github.com/syndtr/goleveldb/leveldb"
+)
 
 type Storage struct {
 	db *leveldb.DB
 }
 
-func NewStorage() (*Storage, error) {
+func NewStorage(dirpath string) (*Storage, error) {
 	db, err := leveldb.OpenFile(dirpath, nil)
 	if err != nil {
 		return nil, err
@@ -17,9 +21,13 @@ func NewStorage() (*Storage, error) {
 }
 
 func (this *Storage) Close() {
-	db.Close()
+	this.db.Close()
 }
 
-func (this *Storage) Put(doc *Document) {
-	err := db.Put()
+func (this *Storage) Put(key string, doc *Document) error {
+	b, err := json.Marshal(doc)
+	if err != nil {
+		return err
+	}
+	return this.db.Put([]byte(key), b, nil)
 }
