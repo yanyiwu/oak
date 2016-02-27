@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/yanyiwu/settledb.png?branch=master)](https://travis-ci.org/yanyiwu/settledb) 
 [![Author](https://img.shields.io/badge/author-@yanyiwu-blue.svg?style=flat)](http://yanyiwu.com/) 
 [![License](https://img.shields.io/badge/license-MIT-yellow.svg?style=flat)](http://yanyiwu.mit-license.org)
-[![GoDoc](https://godoc.org/github.com/yanyiwu/?status.svg)](https://godoc.org/github.com/yanyiwu/settledb)
+[![GoDoc](https://godoc.org/github.com/yanyiwu/settledb?status.svg)](https://godoc.org/github.com/yanyiwu/settledb)
 [![Coverage Status](https://coveralls.io/repos/yanyiwu/settledb/badge.svg?branch=master&service=github)](https://coveralls.io/github/yanyiwu/settledb?branch=master)
 
 ## Introduction
