@@ -3,7 +3,7 @@ package storage
 import (
 	"encoding/json"
 
-	"github.com/syndtr/goleveldb/leveldb"
+	"github.com/yanyiwu/settledb/Godeps/_workspace/src/github.com/syndtr/goleveldb/leveldb"
 )
 
 type Storage struct {
