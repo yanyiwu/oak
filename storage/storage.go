@@ -31,3 +31,15 @@ func (this *Storage) Put(key string, doc *Document) error {
 	}
 	return this.db.Put([]byte(key), b, nil)
 }
+
+func (this *Storage) Get(key string) (*Document, error) {
+	b, err := this.db.Get([]byte(key), nil)
+	if err != nil {
+		return nil, err
+	}
+	doc := Document{make([]string, 0)}
+	if err := json.Unmarshal(b, &doc); err != nil {
+		return nil, err
+	}
+	return &doc, nil
+}
