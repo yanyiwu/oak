@@ -2,18 +2,26 @@ package server
 
 import (
 	"encoding/json"
+	"flag"
 	"net/http"
 
 	"github.com/golang/glog"
 	"github.com/yanyiwu/settledb/engine"
 )
 
+var indexdir = flag.String("indexdir", "./indexdir", "")
+
 var (
 	ng *engine.Engine
 )
 
 func Init() {
-	ng = engine.NewEngine()
+	var err error
+	ng, err = engine.NewEngine(*indexdir)
+	if err != nil {
+		glog.Error(err)
+		panic(err)
+	}
 }
 
 func Serve(addr string) error {
@@ -21,7 +29,6 @@ func Serve(addr string) error {
 		glog.Fatal()
 	}
 	http.HandleFunc("/status", StatusHandler)
-	http.HandleFunc("/keys", KeysHandler)
 	http.HandleFunc("/get", GetHandler)
 	http.HandleFunc("/set", SetHandler)
 	return http.ListenAndServe(addr, nil)
@@ -33,12 +40,6 @@ func StatusHandler(w http.ResponseWriter, req *http.Request) {
 	//}
 	req.ParseForm()
 	b, _ := json.Marshal(req)
-	w.Write(b)
-}
-
-func KeysHandler(w http.ResponseWriter, req *http.Request) {
-	keys := ng.GetKeys()
-	b, _ := json.Marshal(keys)
 	w.Write(b)
 }
 

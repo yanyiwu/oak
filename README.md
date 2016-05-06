@@ -21,7 +21,13 @@ TODO
 go get github.com/yanyiwu/settledb
 glide install
 go build
-./settledb
+./settledb -alsologtostderr=true
+```
+
+Testing
+
+```
+go test $(glide novendor)
 ```
 
 ## License
