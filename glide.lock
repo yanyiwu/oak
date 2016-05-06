@@ -1,0 +1,27 @@
+hash: 717d07cc60cafa63114a803112eba27225b4c9d7dfbfc9baffa3fb3594fd67cd
+updated: 2016-05-06T01:19:17.547720557+08:00
+imports:
+- name: github.com/golang/glog
+  version: 23def4e6c14b4da8ac2ed8007337bc5eb5007998
+- name: github.com/golang/snappy
+  version: d7b1e156f50d3c4664f683603af70e3e47fa0aa2
+- name: github.com/onsi/ginkgo
+  version: 2c2e9bb47b4e44067024f29339588cac8b34dd12
+- name: github.com/onsi/gomega
+  version: 7ce781ea776b2fd506491011353bded2e40c8467
+- name: github.com/syndtr/goleveldb
+  version: cfa635847112c5dc4782e128fa7e0d05fdbfb394
+  subpackages:
+  - leveldb
+  - leveldb/cache
+  - leveldb/comparer
+  - leveldb/errors
+  - leveldb/filter
+  - leveldb/iterator
+  - leveldb/journal
+  - leveldb/memdb
+  - leveldb/opt
+  - leveldb/storage
+  - leveldb/table
+  - leveldb/util
+devImports: []

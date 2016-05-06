@@ -8,7 +8,8 @@
 
 ## Introduction
 
-Wait and see.
++ go1.6+ is needed.
++ [glide] needs to be installed.
 
 ## Usage
 
@@ -26,3 +27,6 @@ go build
 + Email: `i@yanyiwu.com`
 + QQ: 64162451
 + WeChat: ![image](http://7viirv.com1.z0.glb.clouddn.com/5a7d1b5c0d_yanyiwu_personal_qrcodes.jpg)
+
+
+[glide]:https://github.com/Masterminds/glide

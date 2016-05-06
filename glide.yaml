@@ -1,0 +1,8 @@
+package: github.com/yanyiwu/settledb
+import:
+- package: github.com/golang/glog
+- package: github.com/syndtr/goleveldb
+  subpackages:
+  - leveldb
+- package: github.com/onsi/ginkgo
+- package: github.com/onsi/gomega
