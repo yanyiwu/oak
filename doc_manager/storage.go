@@ -1,4 +1,4 @@
-package storage
+package doc_manager
 
 import (
 	"encoding/json"

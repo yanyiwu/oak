@@ -4,7 +4,7 @@ type Engine struct {
 	kv map[string]interface{}
 }
 
-func NewEngine() *Engine {
+func NewEngine(indexdir string) *Engine {
 	engine := &Engine{
 		make(map[string]interface{}),
 	}
