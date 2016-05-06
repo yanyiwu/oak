@@ -8,12 +8,18 @@
 
 ## Introduction
 
+TODO
+
+## Requirements
+
 + go1.6+ is needed.
-+ [glide] needs to be installed.
++ [glide] needs to be installed: `go get github.com/Masterminds/glide`
 
 ## Usage
 
 ```
+go get github.com/yanyiwu/settledb
+glide install
 go build
 ./settledb
 ```

@@ -8,8 +8,7 @@ before_install:
   - if ! go get github.com/golang/tools/cmd/cover; then go get golang.org/x/tools/cmd/cover; fi
 script:
   - glide install
-  - go build ./...
-  - go test ./...
+  - go test $(glide novendor)
   - goveralls -service=travis-ci
 notifications:
   recipients:

@@ -1,8 +1,6 @@
 build:
 	go build -v ./...
 test:
-	go test -v ./...
-godep:
-	godep save -r ./...
+	go test $(glide novendor)
 start:
 	./settledb -alsologtostderr=true
