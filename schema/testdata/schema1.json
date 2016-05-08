@@ -1,0 +1,14 @@
+{
+	    "fields": [
+			{
+				"name": "id", 
+				"type": "primarykey"
+			},
+			{
+				"name": "title"
+			},
+			{
+				"name": "content"
+			}
+		]
+}

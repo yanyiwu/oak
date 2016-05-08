@@ -3,6 +3,7 @@ package doc_manager
 import (
 	"encoding/json"
 
+	"github.com/golang/glog"
 	"github.com/syndtr/goleveldb/leveldb"
 )
 
@@ -13,6 +14,7 @@ type Storage struct {
 func NewStorage(dirpath string) (*Storage, error) {
 	db, err := leveldb.OpenFile(dirpath, nil)
 	if err != nil {
+		glog.Error(err)
 		return nil, err
 	}
 	return &Storage{

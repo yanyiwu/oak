@@ -1,55 +1,75 @@
 package schema
 
 import (
-	"encoding/json"
 	"errors"
+	"io/ioutil"
+
+	"github.com/golang/glog"
 )
 
 type Schema struct {
-	Fields       []SchemaField  `"json":"fields"`
-	NameIDMap    map[string]int `"json":"nameidmap"`
-	PrimaryKey   string         `"json":"primarykey"`
-	PrimaryKeyID int            `"json":"primarykeyid"`
+	nameIDMap    map[string]int
+	primaryKey   string
+	primaryKeyID int
+	filepath     string
+
+	// load info from json string
+	si *SchemaInfo
 }
 
-type SchemaField struct {
-	Name string `"json": "name"`
-	Type string `"json": "type"`
-}
-
-func NewSchema(b []byte) (*Schema, error) {
-	s := &Schema{
-		Fields:    make([]SchemaField, 0),
-		NameIDMap: make(map[string]int),
-	}
-	err := s.parse(b)
+func NewSchema(jsonstr string) (*Schema, error) {
+	si, err := NewSchemaInfo(jsonstr)
 	if err != nil {
+		glog.Info(err)
+		return nil, err
+	}
+	s := &Schema{
+		make(map[string]int),
+		"",
+		0,
+		"",
+		si,
+	}
+	if err := s.parse(si); err != nil {
+		glog.Error(err)
 		return nil, err
 	}
 	return s, nil
 }
 
-func (s *Schema) parse(b []byte) error {
-	err := json.Unmarshal(b, s)
+func NewSchemaFromFile(filepath string) (*Schema, error) {
+	b, err := ioutil.ReadFile(filepath)
 	if err != nil {
-		return err
+		glog.Error(err)
+		return nil, err
 	}
-	for idx, field := range s.Fields {
-		s.NameIDMap[field.Name] = idx
+	return NewSchema(string(b))
+}
+
+func (s *Schema) parse(si *SchemaInfo) error {
+	for idx, field := range si.Fields {
+		s.nameIDMap[field.Name] = idx
 		if field.Type == "primarykey" {
-			if s.PrimaryKey != "" {
+			if s.primaryKey != "" {
 				return errors.New("primary key need to be unique")
 			}
-			s.PrimaryKey = field.Name
-			s.PrimaryKeyID = idx
+			s.primaryKey = field.Name
+			s.primaryKeyID = idx
 		}
 	}
-	if s.PrimaryKey == "" {
+	if s.primaryKey == "" {
 		return errors.New("primary key should be set")
 	}
 	return nil
 }
 
 func (s *Schema) GetPrimaryKey() string {
-	return s.PrimaryKey
+	return s.primaryKey
+}
+
+func (s *Schema) Dump() error {
+	if s.filepath == "" {
+		return errors.New("filepath has not been set")
+	}
+	return s.si.Dump(s.filepath)
 }

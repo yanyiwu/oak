@@ -3,7 +3,7 @@ package schema
 import "testing"
 
 func TestSchema(t *testing.T) {
-	b := []byte(`{
+	b := `{
 	    "fields": [
 			{
 				"name": "id", 
@@ -16,12 +16,23 @@ func TestSchema(t *testing.T) {
 				"name": "content"
 			}
 		]
-	}`)
+	}`
 	schema, err := NewSchema(b)
 	if err != nil {
 		t.Fatal(err)
 	}
 	if schema.GetPrimaryKey() != "id" {
+		t.Fatal()
+	}
+	if err := schema.Dump(); err == nil {
+		t.Fatal()
+	}
+
+	s2, err := NewSchemaFromFile("testdata/schema1.json")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if s2.GetPrimaryKey() != "id" {
 		t.Fatal()
 	}
 }
